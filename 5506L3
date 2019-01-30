@@ -1,0 +1,4 @@
+G.add_node(4, occupation = 'student') #assigning feature when creating a node
+G.node[2]['occupation'] = 'driver'
+print (G.nodes)
+print (G.nodes(data = True)) #show the attribute details
