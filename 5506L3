@@ -2,3 +2,66 @@ G.add_node(4, occupation = 'student') #assigning feature when creating a node
 G.node[2]['occupation'] = 'driver'
 print (G.nodes)
 print (G.nodes(data = True)) #show the attribute details
+
+G.add_edge(1,4,weight = 5)
+print (G.edges(data = True))
+
+# classic small network/rules of plotting in python
+
+petersen = nx.petersen_graph()
+tutte = nx.tutte_graph()
+maze = nx.sedgewick_maze_graph()
+tet = nx.tetrahedral_graph()
+
+#draw the graphs separatetly
+plt.figure(1)
+nx.draw(petersen)
+plt.figure(2)
+nx.draw(tutte)
+plt.figure(3)
+nx.draw(maze)
+plt.figure(4)
+nx.draw(tet)
+
+plt.subplot (2,2,1)
+nx.draw (peterson)
+plt.subplot (2,2,2)
+nx.draw (tutte)
+plt.subplot (2,2,3)
+nx.draw(maze)
+plt.subplot (2,2,4)
+nx.draw(tet)
+
+# erdos-renyi network - random network
+G = nx.erdos_renyi_graph (100,0.05)
+nx.draw (G, nodes_size = 20)
+
+#degree distribution
+data = G.degree
+print (data)
+
+type (data)
+
+data [2] #access the second element within the tuple by simply using []
+
+degree = [item [1] for item in data]
+print (degree)
+
+plt.hist (degree, facecolor = 'g', alpha = 0.5, width = 0.5)
+
+#excercise
+# write a program that asks for parameters n and p and then draw a random network and display a degree distribution next to it
+#tip: the function of asking input:
+n = input ('What is the size of your network, please input an integer')
+p = input ('What is the probability of linking two nodes, please input a number between 0 and 1)
+G = nx.erdos_renyi_graph (n,p)
+
+
+data = G.degree
+degree = [item [1] for item in data]
+
+plt.subplot (1,2,1)
+nx.draw (G, nodes_size = 20)
+plt.subplot (1,2,2)
+plt.hist (degree, facecolor = 'g', alpha = 0.5, width = 0.5)
+
